@@ -27,4 +27,11 @@ app.get('/api', (req, res) => {
   res.send('MyBook TP API is running...');
 });
 
+
+const PORT = process.env.PORT || 5000; // fallback for local dev
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
+
 module.exports = app;
