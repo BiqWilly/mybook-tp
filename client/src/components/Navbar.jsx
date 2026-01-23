@@ -144,7 +144,7 @@ export default function Navbar({
                     onClick={() => navigate("/login")} 
                     className="w-full py-4 bg-red-600 text-white font-black rounded-2xl hover:bg-red-700 transition-all shadow-lg"
                   >
-                    Sign In
+                    Logout
                   </button>
                 )}
               </div>

@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import API_URL from "../api";
 import { useNavigate } from "react-router-dom";
 
 export default function Forums() {
