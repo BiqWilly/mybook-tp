@@ -20,13 +20,13 @@ export default function LibrarianDashboard() {
   const fetchAdminData = async () => {
     try {
       // 1. Fetch all borrowings
-      const res = await fetch("${API_URL}/api/books");
+      const res = await fetch(`${API_URL}/api/books`);
       const data = await res.json();
       const activeData = Array.isArray(data) ? data.filter(b => b.status === 'active') : [];
       setBorrowings(activeData);
       
       // 2. Fetch all books
-      const bookRes = await fetch("${API_URL}/api/books");
+      const bookRes = await fetch(`${API_URL}/api/books`);
       const bookData = await bookRes.json();
       const safeBookData = Array.isArray(bookData) ? bookData : [];
       setAllBooks(safeBookData);
