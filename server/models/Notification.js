@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const notificationSchema = new mongoose.Schema({
   user_id: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'User', // Links to your Users collection
+    ref: 'User', // Links to Users collection
     required: true
   },
   type: {
@@ -19,6 +19,6 @@ const notificationSchema = new mongoose.Schema({
     type: Boolean,
     default: false
   }
-}, { timestamps: true }); // Automatically handles your 'created_at' attribute
+}, { timestamps: true }); // handles 'created_at' attribute
 
 module.exports = mongoose.model('Notification', notificationSchema);

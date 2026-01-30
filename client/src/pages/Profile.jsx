@@ -43,7 +43,7 @@ export default function Profile() {
     }
   };
 
-  // Logic from your code: Map books with liked status
+  // Map books with liked status
   const books = useMemo(() => {
     return allBooks.map((b) => ({
       ...b,
@@ -51,7 +51,7 @@ export default function Profile() {
     }));
   }, [allBooks, likedIds]);
 
-  // Logic from your code: Match reserved book details
+  // Match reserved book details
   const queuedBooks = useMemo(() => {
     return reservations.map(res => {
         const bookDetails = allBooks.find(b => b._id === res.book_id);
@@ -60,10 +60,10 @@ export default function Profile() {
     }).filter(b => b._id);
   }, [reservations, allBooks, likedIds]);
 
-  // Logic from your code: Filter liked books
+  // Filter liked books
   const likedBooks = books.filter((b) => b.liked);
 
-  // Updated toggleLike to sync with Backend
+  // toggleLike to sync with backend
   const toggleLike = async (bookId) => {
     try {
       const response = await fetch(`${API_URL}/api/users/toggle-like`, {
