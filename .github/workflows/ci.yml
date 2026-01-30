@@ -22,12 +22,12 @@ jobs:
 
       # Backend
       - name: Install backend dependencies
-        run: npm ci
+        run: npm install
 
       # Frontend
       - name: Install frontend dependencies
         working-directory: client
-        run: npm ci
+        run: npm install
 
       - name: Build frontend (Vite)
         working-directory: client
