@@ -133,7 +133,7 @@ export default function LibrarianDashboard() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
         {/* ADD BOOK FORM */}
         <div className="lg:col-span-1 bg-slate-800 p-8 rounded-3xl border border-slate-700 shadow-xl h-fit sticky top-24">
-          <h2 className="text-2xl font-bold mb-6">Add New Acquisition</h2>
+          <h2 className="text-2xl font-bold mb-6">Add New Book</h2>
           <form onSubmit={handleAddBook} className="space-y-4">
             <input type="text" placeholder="Book Title" className="w-full bg-slate-700 p-3 rounded-xl outline-none focus:ring-2 focus:ring-red-500" value={newBook.title} onChange={(e) => setNewBook({...newBook, title: e.target.value})} required />
             <div className="grid grid-cols-2 gap-4">
@@ -144,9 +144,16 @@ export default function LibrarianDashboard() {
                </select>
             </div>
             <div className="grid grid-cols-2 gap-4">
-               <input type="number" placeholder="Total Copies" className="bg-slate-700 p-3 rounded-xl outline-none" value={newBook.totalCopies} onChange={(e) => setNewBook({...newBook, totalCopies: Number(e.target.value)})} required />
-               <input type="number" placeholder="Available" className="bg-slate-700 p-3 rounded-xl outline-none" value={newBook.availableCopies} onChange={(e) => setNewBook({...newBook, availableCopies: Number(e.target.value)})} required />
+              
+              <label className="text-xs font-bold text-slate-400 uppercase">Total Copies</label>
+               <input type="number" placeholder="Total Copies" className="bg-slate-700 p-3 rounded-xl outline-none" value={newBook.totalCopies} 
+               onChange={(e) => setNewBook({...newBook, totalCopies: Number(e.target.value)})} required />
+
+                <label className="text-xs font-bold text-slate-400 uppercase">Available</label>
+               <input type="number" placeholder="Available" className="bg-slate-700 p-3 rounded-xl outline-none" value={newBook.availableCopies} 
+               onChange={(e) => setNewBook({...newBook, availableCopies: Number(e.target.value)})} required />
             </div>
+
             <input type="text" placeholder="Location" className="w-full bg-slate-700 p-3 rounded-xl outline-none" value={newBook.location} onChange={(e) => setNewBook({...newBook, location: e.target.value})} required />
             <textarea placeholder="Description" className="w-full bg-slate-700 p-3 rounded-xl h-24 outline-none focus:ring-2 focus:ring-red-500" value={newBook.description} onChange={(e) => setNewBook({...newBook, description: e.target.value})} />
             <input type="text" placeholder="Image URL" className="w-full bg-slate-700 p-3 rounded-xl outline-none" value={newBook.image} onChange={(e) => setNewBook({...newBook, image: e.target.value})} />
@@ -236,7 +243,7 @@ export default function LibrarianDashboard() {
                     <select className="w-full bg-slate-800 p-4 rounded-2xl outline-none font-black uppercase text-xs border border-slate-700" value={selectedBook.status} onChange={(e) => setSelectedBook({...selectedBook, status: e.target.value})}>
                         <option value="Available">Available</option>
                         <option value="Require Queue">Require Queue</option>
-                        <option value="Reserved">Reserved</option>
+                        <option value="Unavailable">Unavailable</option>
                     </select>
                 </div>
                 <div className="space-y-2">
