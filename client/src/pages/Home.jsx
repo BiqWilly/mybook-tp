@@ -69,7 +69,7 @@ export default function Home() {
     if (!user) return alert("Please login to join the queue!");
 
     try {
-      const response = await fetch(`${API_URL}/reservations/join`, {
+      const response = await fetch(`${API_URL}/api/reservations/join`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ book_id: bookId, user_id: user._id }),
@@ -92,7 +92,7 @@ export default function Home() {
     if (!user) return alert("Please login to like books!");
 
     try {
-      const response = await fetch(`${API_URL}/users/toggle-like`, {
+      const response = await fetch(`${API_URL}/api/users/toggle-like`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ userId: user._id, bookId: bookId }),

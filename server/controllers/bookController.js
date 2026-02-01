@@ -26,6 +26,17 @@ exports.createBook = async (req, res) => {
 exports.borrowBook = async (req, res) => {
   const { book_id, user_id, days } = req.body;
   try {
+    //check if user already borrowing this book
+    const existingBorrow = await Borrowing.findOne({ 
+        user_id, 
+        book_id, 
+        status: 'borrowed' 
+    });
+    if (existingBorrow) {
+      return res.status(400).json({ message: "You are already borrowing this book!" });
+    }
+    
+    //check if book is available
     const book = await Book.findById(book_id);
     if (!book || book.availableCopies <= 0) {
       return res.status(400).json({ message: "Book is no longer available." });

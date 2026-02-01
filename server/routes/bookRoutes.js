@@ -3,15 +3,15 @@ const router = express.Router();
 const Book = require('../models/Book');
 const { getBooks, createBook, borrowBook } = require('../controllers/bookController');
 
-// 1. GET ALL BOOKS (READ)
+// 1. GET ALL BOOKS
 router.get('/', getBooks);
 
-// 2. GET ALL BORROWINGS (READ)
+// 2. GET ALL BORROWINGS
 router.get('/borrowings/all', async (req, res) => {
     try {
         const Borrowing = require('../models/Borrowing');
         const borrowings = await Borrowing.find()
-            .populate('book_id', 'title') 
+            .populate('book_id')
             .populate('user_id', 'name');
         res.json(borrowings);
     } catch (err) {
@@ -19,13 +19,13 @@ router.get('/borrowings/all', async (req, res) => {
     }
 });
 
-// 3. CREATE BOOK (CREATE)
+// 3. CREATE BOOK 
 router.post('/', createBook);
 
-// 4. BORROW BOOK (CREATE)
+// 4. BORROW BOOK
 router.post('/borrow', borrowBook);
 
-// 5. RETURN BOOK (UPDATE - Specific Path)
+// 5. RETURN BOOK
 // Always put specific words like /return/ BEFORE dynamic variables like /:id
 router.put('/return/:id', async (req, res) => {
     try {

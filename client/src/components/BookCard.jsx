@@ -53,7 +53,7 @@ export default function BookCard({
                 </div>
 
                 <div className="mt-auto pt-4">
-                    {book.status === "Available" && (
+                    {book.status === "Available" && !hideQueueAction && (
                         <button
                             onClick={(e) => {
                                 e.stopPropagation(); // Stop card click
