@@ -6,7 +6,7 @@ const PostSchema = new mongoose.Schema({
   author: { type: String, required: true }, // The user's name
   authorId: { 
     type: mongoose.Schema.Types.ObjectId, 
-    ref: 'User', // This "links" the post to a real User
+    ref: 'User', // This links the post to a real User
     required: true 
   },
   upvotes: { type: Number, default: 0 },
