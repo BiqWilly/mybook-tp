@@ -1,36 +1,49 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import API_URL from "../api";
 
 export default function LibrarianDashboard() {
   const [borrowings, setBorrowings] = useState([]);
   const [allBooks, setAllBooks] = useState([]);
   const [stats, setStats] = useState({ activeLoans: 0, totalBooks: 0 });
-  const [selectedBook, setSelectedBook] = useState(null); // For Edit Modal
+  const [selectedBook, setSelectedBook] = useState(null); 
   const [newBook, setNewBook] = useState({
     title: "", author: "", genre: "", publicationYear: 2026,
     description: "", totalCopies: 1, availableCopies: 1, location: "", image: ""
   });
 
   const genres = ["Fiction", "Science", "History", "Productivity", "Business", "Self-Improvement", "Technology"];
+  const navigate = useNavigate();
 
-  useEffect(() => {
-    fetchAdminData();
-  }, []);
+useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("userInfo"));
+    if (!user || user.role !== "admin") {
+      alert("Access Denied: Librarians Only!");
+      navigate("/"); // if not admin, go home
+    } else {
+      fetchAdminData();
+    }
+  }, [navigate]);
 
-  const fetchAdminData = async () => {
+const fetchAdminData = async () => {
     try {
-      // 1. Fetch all borrowings
-      const res = await fetch(`${API_URL}/api/books`);
-      const data = await res.json();
-      const activeData = Array.isArray(data) ? data.filter(b => b.status === 'active') : [];
+      // 1. Fetch all Borrowings
+      const borrowRes = await fetch(`${API_URL}/api/books/borrowings/all`);
+      const borrowData = await borrowRes.json();
+      
+      // Filter for 'borrowed' boooks only
+      const activeData = Array.isArray(borrowData) 
+        ? borrowData.filter(b => b.status === 'borrowed') 
+        : [];
       setBorrowings(activeData);
       
-      // 2. Fetch all books
+      // 2. Fetch all Books
       const bookRes = await fetch(`${API_URL}/api/books`);
       const bookData = await bookRes.json();
       const safeBookData = Array.isArray(bookData) ? bookData : [];
       setAllBooks(safeBookData);
       
+      // Update stats based on these separate lists
       setStats({
         activeLoans: activeData.length,
         totalBooks: safeBookData.length
