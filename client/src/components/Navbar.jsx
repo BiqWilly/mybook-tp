@@ -37,7 +37,7 @@ export default function Navbar({
       navigate("/profile");
       closeDrawer();
     } else if (item === "Dashboard") {
-      navigate("/librarian-dashboard");
+      navigate("/admin");
       closeDrawer();
     }
   };

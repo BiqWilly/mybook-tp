@@ -132,7 +132,7 @@ const fetchAdminData = async () => {
           <p className="text-4xl font-black text-green-400">{stats.activeLoans}</p>
         </div>
         <div className="bg-slate-800 p-6 rounded-3xl border border-slate-700 shadow-xl">
-          <p className="text-slate-400 text-sm font-bold uppercase">Total Titles</p>
+          <p className="text-slate-400 text-sm font-bold uppercase">Total Books in Catalog</p> 
           <p className="text-4xl font-black text-blue-400">{stats.totalBooks}</p>
         </div>
         <div className="bg-slate-800 p-6 rounded-3xl border border-slate-700 shadow-xl">
@@ -273,7 +273,7 @@ const fetchAdminData = async () => {
               </div>
 
               <div className="space-y-2">
-                <label className="text-[10px] font-black text-slate-600 uppercase ml-2 tracking-[0.2em]">Synopsis</label>
+                <label className="text-[10px] font-black text-slate-600 uppercase ml-2 tracking-[0.2em]">Description</label>
                 <textarea className="w-full bg-slate-800 p-4 rounded-2xl h-32 outline-none font-medium text-slate-300 border border-slate-700" value={selectedBook.description} onChange={(e) => setSelectedBook({...selectedBook, description: e.target.value})} />
               </div>
 
